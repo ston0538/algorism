@@ -7,7 +7,7 @@ function solution(parts, comples) {
   }, {});
   comples.forEach((comple) => {
     if (result[comple]) {
-      result[comple] -= 1;
+      result[comple] = result[comple] - 1;
     }
     if (result[comple] === 0) {
       delete result[comple];

@@ -4,7 +4,7 @@ export function binaraySearch(arr, value) {
   let upperBound = arr.length - 1;
   // 상한선과 하한선 사이의 가운데 값을 계속해서 확인하는 루프 구현
   while (lowerBound <= upperBound) {
-    console.log("try");
+    // console.log("try");
     let midBound = Math.floor((upperBound + lowerBound) / 2); // 5
     let midBoundValue = arr[midBound];
     // 같다면 바로 return
@@ -19,4 +19,21 @@ export function binaraySearch(arr, value) {
     } else upperBound = midBound - 1;
   }
   return -1;
+}
+
+export function bubleSort(arr) {
+  // 배열의 정렬 여부
+  let sorted = false;
+  // 각 while 루프는 새로운 패스스루를 뜻한다.
+  while (sorted === false) {
+    sorted = true;
+    arr.forEach((element, index, array) => {
+      if (element > array[index + 1]) {
+        array[index] = array[index + 1];
+        array[index + 1] = element;
+        sorted = false;
+      }
+    });
+  }
+  return arr;
 }
