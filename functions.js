@@ -1,4 +1,4 @@
-export function binaraySearch(arr, value) {
+export function binarySearch(arr, value) {
   // 상한선, 하한선 값 구하기
   let lowerBound = 0;
   let upperBound = arr.length - 1;
@@ -36,4 +36,35 @@ export function bubleSort(arr) {
     });
   }
   return arr;
+}
+
+export function permutate(nums, set = [], acc = []) {
+  if (nums.length === 0) {
+    return acc.push([...set]);
+  }
+  nums.forEach((item, index, arr) => {
+    const newNums = nums.filter((n, i) => item !== n);
+    set.push(item);
+    permutate(newNums, set, acc);
+    set.pop(item);
+  });
+  return acc.length;
+}
+
+export function permutation(nums) {
+  if (nums.length === 0) return [[]];
+  const first = nums[0];
+  const tail = nums.slice(1, Infinity);
+  const withOutFirstPerm = permutation(tail);
+  const result = [];
+  withOutFirstPerm.forEach((item) => {
+    for (let i = 0; i <= item.length; i++) {
+      console.log("item", item);
+      console.log("first", first);
+      // console.log(i);
+      const permWithFirst = [...item.slice(0, i), first, ...item.slice(i)];
+      result.push(permWithFirst);
+    }
+  });
+  return result;
 }

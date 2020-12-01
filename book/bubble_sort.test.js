@@ -1,4 +1,4 @@
-const { bubleSort } = require("../functions");
+// const { bubleSort } = require("../functions");
 
 describe("버블 정렬", () => {
   it("버블 정렬 만들기1", () => {
@@ -19,12 +19,26 @@ describe("버블 정렬", () => {
   });
   it("버블 정렬 만들기2", () => {
     const array = [4, 2, 7, 1, 3];
-    expect(bubleSort(array)).toEqual([1, 2, 3, 4, 7]);
+    function bubleSort2(nums) {
+      let sorted = false;
+      while (sorted === false) {
+        sorted = true;
+        nums.forEach((item, index, array) => {
+          if (item > array[index + 1]) {
+            array[index] = array[index + 1];
+            array[index + 1] = item;
+            sorted = false;
+          }
+        });
+      }
+      return array;
+    }
+    expect(bubleSort2(array)).toEqual([1, 2, 3, 4, 7]);
   });
   it("배열의 중복 검사(이차 문제1)", () => {
     const array = [4, 2, 7, 1, 5, 1];
     function hasDuplicateValue(array) {
-      console.log(array.length);
+      // console.log(array.length);
       for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
           if (i !== j && array[i] == array[j]) {

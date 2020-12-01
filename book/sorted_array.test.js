@@ -1,61 +1,70 @@
-import R from "ramda";
-import { binaraySearch } from "../functions";
 describe("정렬된 배열", () => {
   it("선형 검색 forEach", () => {
     const array = [3, 17, 75, 80, 202];
     function linear_search(arr, value) {
-      let result;
       let i = 0;
-      arr.forEach((item, index) => {
-        console.log(i++);
-        if (item === value) {
-          result = `${item}은 ${index}에 위치하고 있습니다.`;
-        } else if (item > value) {
+      for (let index = 0; index < arr.length; index++) {
+        if (arr[index] === value) {
+          return true;
+        } else if (arr[index] > value) {
+          return false;
         }
-      });
-      return result;
+      }
     }
-    // expect(linear_search(array, 18)).toBe(17);
+    expect(linear_search(array, 17)).toBe(true);
   });
   it("선형 검색 find", () => {
     const array = [3, 17, 75, 80, 202];
     function linear_search(arr, value) {
       const findValue = (item) => item === value;
       const result = arr.find(findValue);
-      if (result !== undefined) {
-        return `${result}을 찾았습니다.`;
-      } else {
-        return "값을 찾을 수 없습니다";
-      }
+      return result;
     }
-    expect(linear_search(array, 3)).toBe("3을 찾았습니다.");
+    expect(linear_search(array, 3)).toBe(3);
   });
   it("선형 검색 some", () => {
     const array = [3, 17, 75, 80, 202];
     function linear_search(arr, value) {
-      let returnText;
-      const findValue = (item, index) => {
-        if (item === value) {
-          returnText = `${item}을 ${index}에서 찾았습니다.`;
-          return true;
-        }
-      };
-
-      const result = arr.some(findValue);
-      if (result === true) {
-        return returnText;
-      } else {
-        return "값을 찾을 수 없습니다";
-      }
+      const result = arr.some((item) => item === value);
+      return result;
     }
-    expect(linear_search(array, 202)).toBe("202을 4에서 찾았습니다.");
+    expect(linear_search(array, 202)).toBe(true);
   });
   it("2진검색(binary search)", () => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    expect(binaraySearch(array, 11)).toBe(-1);
+    // expect(binaraySearch(array, 11)).toBe(-1);
   });
   it("2진검색(binary search) 100개의 값은 7단계", () => {
-    const array = R.range(0, 100);
-    expect(binaraySearch(array, 4)).toBe(4);
+    function range(from, to) {
+      const result = [];
+      let n = from;
+      while (n < to) {
+        result.push(n);
+        n += 1;
+      }
+      return result;
+    }
+    function binarySearch(lists, value) {
+      // start, end 구하기
+      console.log(lists);
+      let lowerBound = 0;
+      let upperBound = lists.length - 1;
+      while (lowerBound <= upperBound) {
+        let middleBound = Math.ceil((lowerBound + upperBound) / 2);
+        let middleValue = lists[middleBound];
+        if (value === lists[middleBound]) {
+          return middleBound;
+        }
+        if (value > lists[middleBound]) {
+          lowerBound = middleBound + 1;
+        } else if (value < lists[middleBound]) {
+          upperBound = middleBound - 1;
+        }
+      }
+      return false;
+      // 중간값 구하기
+    }
+    const array = range(1, 10);
+    expect(binarySearch(array, 4)).toBe(3);
   });
 });

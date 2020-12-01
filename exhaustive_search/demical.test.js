@@ -1,5 +1,5 @@
 describe("소수찾기", () => {
-  const numbers = "17235";
+  const numbers = "17";
   function stringToNumbers(numbers) {
     const transferArray = numbers.split("");
     const result = transferArray.map((item) => {
@@ -7,20 +7,27 @@ describe("소수찾기", () => {
     });
     return result;
   }
+  function isPrime(nums) {
+    const numsFilter = nums.filter((num) => {
+      if (num > 2) {
+        return num % 2 !== 0;
+      }
+    });
+    return numsFilter;
+  }
   function solutions(numbers) {
     const lists = stringToNumbers(numbers).sort();
     const result = [];
-    for (let i = 0; i < lists.length; i++) {
-      for (let j = 0; j < lists.length; j++) {
-        if (i === j) continue;
-        result.push(Number(lists[i] + "" + lists[j]));
-      }
-    }
-    // const result2 = result.filter((item) => item % 2 === 1);
+    lists.forEach((element, index, array) => {
+      console.log(numbers.length);
+      result.push(element);
+    });
     console.log(result);
-    return lists;
+    const result2 = isPrime(result).sort((a, b) => a - b);
+    // return result2;
   }
   it("", () => {
-    expect(solutions(numbers)).toEqual([1, 2, 3, 5, 7]);
+    expect(solutions(numbers)).toEqual([7, 17, 71]);
+    // expect(isPrime([1, 2, 3, 4])).toEqual([1, 2, 3, 5, 7]);
   });
 });
