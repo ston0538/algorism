@@ -28,6 +28,6 @@ describe("소수찾기", () => {
   }
   it("", () => {
     expect(solutions(numbers)).toEqual([7, 17, 71]);
-    // expect(isPrime([1, 2, 3, 4])).toEqual([1, 2, 3, 5, 7]);
+    expect(isPrime([1, 2, 3, 4])).toEqual([1, 2, 3, 5, 7]);
   });
 });

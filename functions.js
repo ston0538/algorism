@@ -68,3 +68,12 @@ export function permutation(nums) {
   });
   return result;
 }
+export function range(from, to) {
+  const result = [];
+  let n = from;
+  while (n < to) {
+    result.push(n);
+    n += 1;
+  }
+  return result;
+}
